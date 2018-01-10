@@ -4,6 +4,7 @@
   "description": "An API for scheduling information",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon",
     "test": "test"
   },
   "repository": {
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/kradical/roomraider#readme",
   "dependencies": {
-    "koa": "^2.4.1"
+    "koa": "^2.4.1",
+    "nodemon": "^1.14.10"
   }
 }
