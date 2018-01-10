@@ -1,0 +1,22 @@
+{
+  "name": "roomraider",
+  "version": "0.0.1",
+  "description": "An API for scheduling information",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kradical/roomraider.git"
+  },
+  "author": "Konrad Schultz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kradical/roomraider/issues"
+  },
+  "homepage": "https://github.com/kradical/roomraider#readme",
+  "dependencies": {
+    "koa": "^2.4.1"
+  }
+}
