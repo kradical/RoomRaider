@@ -61,8 +61,8 @@ exports.up = (pgm) => {
 };
 
 exports.down = (pgm) => {
+  pgm.dropTable('bookings');
+  pgm.dropTable('users');
   pgm.dropTable('rooms');
   pgm.dropTable('buildings');
-  pgm.dropTable('users');
-  pgm.dropTable('bookings');
 };
