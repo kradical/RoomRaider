@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon",
     "db:migrate": "node-pg-migrate",
+    "db:populate": "node ./scripts/db:populate",
     "test": "test"
   },
   "repository": {
