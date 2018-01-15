@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/kradical/roomraider#readme",
   "dependencies": {
+    "axios": "^0.17.1",
+    "cheerio": "^1.0.0-rc.2",
     "koa": "^2.4.1",
     "node-pg-migrate": "^2.15.0",
     "nodemon": "^1.14.10",
