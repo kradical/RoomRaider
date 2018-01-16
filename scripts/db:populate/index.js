@@ -57,9 +57,42 @@ const getAllUrls = async () => {
   return semesterUrls;
 }
 
+const seedFromInfo = ({ frequency, time, days, location, range }) => {
+  // TODO: do the processing.
+
+  console.log(frequency);
+}
+
+const seedOneClassOneSemester = async (url) => {
+  const response = await axios.get(url);
+  const $ = cheerio.load(response.data);
+
+  const infoCellSelector = 'table.datadisplaytable table.datadisplaytable td.dddefault';
+  const infoCells = $(infoCellSelector);
+
+  const getContents = function() {
+    return $(this).text();
+  };
+
+  const info = infoCells.map(getContents).get();
+
+  for (let i = 0; i < info.length; i += 7) {
+    seedFromInfo({
+      frequency: info[i],
+      time: info[i + 1],
+      days: info[i + 2],
+      location: info[i + 3],
+      range: info[i + 4],
+    })
+  }
+}
+
+const seedAllEntities = (urls) => Promise.all(urls.map(seedOneClassOneSemester))
+
 const populate = async () => {
-  const urls = await getAllUrls();
-  console.log(urls);
+  const urls = ['https://www.uvic.ca/BAN1P/bwckctlg.p_disp_listcrse?term_in=201801&subj_in=ADMN&crse_in=312&schd_in=']; // await getAllUrls();
+
+  await seedAllEntities(urls);
 
   /*
    * TODO:
