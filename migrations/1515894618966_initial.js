@@ -10,6 +10,7 @@ exports.up = (pgm) => {
       type: 'text',
       notNull: true,
     },
+
     // 'system', 'user', 'entity',
     type: {
       type: 'text',
@@ -22,10 +23,24 @@ exports.up = (pgm) => {
       notNull: true,
     },
   });
+  pgm.createTable('campuses', {
+    id: 'id',
+    name: {
+      type: 'text',
+      notNull: true,
+      unique: true,
+    },
+  });
   pgm.createTable('buildings', {
     id: 'id',
     name: {
       type: 'text',
+      notNull: true,
+    },
+
+    // many-to-one campus
+    campusId: {
+      type: 'INTEGER REFERENCES campuses(id)',
       notNull: true,
     },
   });
@@ -37,8 +52,8 @@ exports.up = (pgm) => {
     },
 
     // many-to-one building
-    building_id: {
-      type: 'int4 REFERENCES buildings(id)',
+    buildingId: {
+      type: 'INTEGER REFERENCES buildings(id)',
       notNull: true,
     },
   });
@@ -48,16 +63,18 @@ exports.up = (pgm) => {
     endTime: { type: 'timestamp with time zone'},
 
     // many-to-one room
-    room_id: {
-      type: 'int4 REFERENCES rooms(id)',
+    roomId: {
+      type: 'INTEGER REFERENCES rooms(id)',
       notNull: true,
     },
     // many-to-one user
-    user_id: {
-      type: 'int4 REFERENCES users(id)',
+    userId: {
+      type: 'INTEGER REFERENCES users(id)',
       notNull: true,
     },
   });
+
+  pgm.addConstraint('buildings', 'campusIdName', 'UNIQUE("campusId", "name")');
 };
 
 exports.down = (pgm) => {
@@ -65,4 +82,5 @@ exports.down = (pgm) => {
   pgm.dropTable('users');
   pgm.dropTable('rooms');
   pgm.dropTable('buildings');
+  pgm.dropTable('campuses');
 };
